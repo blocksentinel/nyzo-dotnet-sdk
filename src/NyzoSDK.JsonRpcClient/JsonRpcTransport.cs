@@ -11,16 +11,16 @@ public class JsonRpcTransport : IJsonRpcTransport
 {
     private readonly HttpClient _httpClient;
     private readonly IIdGenerator _idGenerator;
-    private readonly Uri _url;
+    private readonly JsonRpcTransportOptions _options = new();
 
     public JsonRpcTransport(
         HttpClient httpClient,
-        IIdGenerator idGenerator
+        Action<JsonRpcTransportOptions>? options = null
     )
     {
-        _httpClient = httpClient;
-        _idGenerator = idGenerator;
-        _url = new Uri("http://46.101.134.30:4000/jsonrpc");
+        options?.Invoke(_options);
+        _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+        _idGenerator = _options.IdGenerator ?? new DefaultIdGenerator();
     }
 
     public virtual async Task<JsonRpcResponse<TResponse>> SendAsync<TRequest, TResponse>(
@@ -31,7 +31,7 @@ public class JsonRpcTransport : IJsonRpcTransport
     {
         try
         {
-            HttpResponseMessage result = await _httpClient.PostAsJsonAsync(_url,
+            HttpResponseMessage result = await _httpClient.PostAsJsonAsync(_options.Url,
                 JsonRpcRequest<TRequest>.Create(request, id ?? _idGenerator.Generate()), cancellationToken);
 
             if (!result.IsSuccessStatusCode)

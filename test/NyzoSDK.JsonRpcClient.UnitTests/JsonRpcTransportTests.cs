@@ -28,7 +28,7 @@ public class JsonRpcTransportTests
             .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(() => throw new HttpRequestException())
             .Verifiable();
-        JsonRpcTransport sut = new(new HttpClient(messageHandlerMock.Object), new DefaultIdGenerator());
+        JsonRpcTransport sut = new(new HttpClient(messageHandlerMock.Object));
 
         // Act
         JsonRpcException result = await Should.ThrowAsync<JsonRpcException>(
@@ -51,7 +51,7 @@ public class JsonRpcTransportTests
             .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(() => new HttpResponseMessage { StatusCode = HttpStatusCode.BadRequest })
             .Verifiable();
-        JsonRpcTransport sut = new(new HttpClient(messageHandlerMock.Object), new DefaultIdGenerator());
+        JsonRpcTransport sut = new(new HttpClient(messageHandlerMock.Object));
 
         // Act
         JsonRpcException result = await Should.ThrowAsync<JsonRpcException>(
@@ -80,7 +80,7 @@ public class JsonRpcTransportTests
                     @"{""result"":null,""id"":""82e9d267-7de1-4d2c-88c1-6cfedf831c7f"",""jsonrpc"":""2.0""}")
             })
             .Verifiable();
-        JsonRpcTransport sut = new(new HttpClient(messageHandlerMock.Object), new DefaultIdGenerator());
+        JsonRpcTransport sut = new(new HttpClient(messageHandlerMock.Object));
 
         // Act
         Task<JsonRpcResponse<EchoResponse>> task = sut.SendAsync<EchoRequest, EchoResponse>(new EchoRequest(), "test");
@@ -106,7 +106,7 @@ public class JsonRpcTransportTests
                     @"{""result"":null,""id"":""82e9d267-7de1-4d2c-88c1-6cfedf831c7f"",""jsonrpc"":""2.0""}")
             })
             .Verifiable();
-        JsonRpcTransport sut = new(new HttpClient(messageHandlerMock.Object), new DefaultIdGenerator());
+        JsonRpcTransport sut = new(new HttpClient(messageHandlerMock.Object));
 
         // Act
         JsonRpcException result = await Should.ThrowAsync<JsonRpcException>(
