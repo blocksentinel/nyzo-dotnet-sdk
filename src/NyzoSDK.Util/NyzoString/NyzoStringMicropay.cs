@@ -67,24 +67,35 @@ public class NyzoStringMicropay : INyzoString
     {
         byte[] receiverIdentifier = bytes.Take(FieldByteSize.Identifier).ToArray();
         int senderDataLength = Math.Min(bytes[FieldByteSize.Identifier] & 0xff, FieldByteSize.MaximumSenderDataLength);
-        byte[] senderData = bytes.Skip(FieldByteSize.Identifier + 1).Take(senderDataLength).ToArray();
+        byte[] senderData = bytes.Skip(FieldByteSize.Identifier + FieldByteSize.UnnamedByte).Take(senderDataLength).ToArray();
         long amount =
             BitConverter.ToInt64(
-                bytes.Skip(FieldByteSize.Identifier + 1 + senderDataLength)
-                    .Take(FieldByteSize.Identifier + 1 + senderDataLength + 8)
+                bytes.Skip(FieldByteSize.Identifier + FieldByteSize.UnnamedByte + senderDataLength)
+                    .Take(FieldByteSize.TransactionAmount)
                     .ToArray(), 0);
         long timestamp =
             BitConverter.ToInt64(
-                bytes.Skip(FieldByteSize.Identifier + 1 + senderDataLength + 8)
-                    .Take(FieldByteSize.Identifier + 1 + senderDataLength + 8 + 8)
+                bytes.Skip(FieldByteSize.Identifier +
+                           FieldByteSize.UnnamedByte +
+                           senderDataLength +
+                           FieldByteSize.TransactionAmount)
+                    .Take(FieldByteSize.Timestamp)
                     .ToArray(), 0);
-        long previousHashHeight =
-            BitConverter.ToInt64(
-                bytes.Skip(FieldByteSize.Identifier + 1 + senderDataLength + 8 + 8)
-                    .Take(FieldByteSize.Identifier + 1 + senderDataLength + 8 + 8 + 8)
-                    .ToArray(), 0);
-        byte[] previousBlockHash = bytes.Skip(FieldByteSize.Identifier + 1 + senderDataLength + 8 + 8 + 8)
-            .Take(FieldByteSize.Identifier + 1 + senderDataLength + 8 + 8 + 8 + FieldByteSize.Hash)
+        long previousHashHeight = BitConverter.ToInt64(
+            bytes.Skip(FieldByteSize.Identifier +
+                       FieldByteSize.UnnamedByte +
+                       senderDataLength +
+                       FieldByteSize.TransactionAmount +
+                       FieldByteSize.Timestamp)
+                .Take(FieldByteSize.BlockHeight)
+                .ToArray(), 0);
+        byte[] previousBlockHash = bytes.Skip(FieldByteSize.Identifier +
+                                              FieldByteSize.UnnamedByte +
+                                              senderDataLength +
+                                              FieldByteSize.TransactionAmount +
+                                              FieldByteSize.Timestamp +
+                                              FieldByteSize.BlockHeight)
+            .Take(FieldByteSize.Hash)
             .ToArray();
 
         return new NyzoStringMicropay(receiverIdentifier, senderData, amount, timestamp, previousHashHeight, previousBlockHash);

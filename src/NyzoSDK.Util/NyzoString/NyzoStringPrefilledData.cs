@@ -51,7 +51,7 @@ public class NyzoStringPrefilledData : INyzoString
     {
         byte[] receiverIdentifier = bytes.Take(FieldByteSize.Identifier).ToArray();
         int senderDataLength = Math.Min(bytes[FieldByteSize.Identifier] & 0xff, FieldByteSize.MaximumSenderDataLength);
-        byte[] senderData = bytes.Skip(FieldByteSize.Identifier + 1).Take(senderDataLength).ToArray();
+        byte[] senderData = bytes.Skip(FieldByteSize.Identifier + FieldByteSize.UnnamedByte).Take(senderDataLength).ToArray();
 
         return new NyzoStringPrefilledData(receiverIdentifier, senderData);
     }
