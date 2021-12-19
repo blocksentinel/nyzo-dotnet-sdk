@@ -4,9 +4,16 @@
 
 ![GitHub](https://img.shields.io/github/license/blocksentinel/nyzo-dotnet-sdk)
 
+## Features
+
+- JSONRPC Client
+- NyzoStrings (.NET Implementation)
+
 ## Resources
 
 * [Open Nyzo](https://github.com/Open-Nyzo/nyzoVerifier)
+* [Nyzo](https://github.com/n-y-z-o/nyzoVerifier)
+* [NyzoStrings](https://github.com/AngainorDev/NyzoStrings)
 
 ## Contributing to this project
 
