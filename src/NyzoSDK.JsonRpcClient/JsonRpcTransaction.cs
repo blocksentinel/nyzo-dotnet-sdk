@@ -2,7 +2,7 @@
 
 namespace BS.NyzoSDK.JsonRpcClient;
 
-public record Transaction
+public record JsonRpcTransaction
 {
     public long Amount { get; set; }
     public string Receiver { get; set; } = "";

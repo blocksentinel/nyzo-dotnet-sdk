@@ -18,8 +18,8 @@ public class JsonRpcTransport : IJsonRpcTransport
         Action<JsonRpcTransportOptions>? options = null
     )
     {
-        options?.Invoke(_options);
         _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+        options?.Invoke(_options);
         _idGenerator = _options.IdGenerator ?? new DefaultIdGenerator();
     }
 

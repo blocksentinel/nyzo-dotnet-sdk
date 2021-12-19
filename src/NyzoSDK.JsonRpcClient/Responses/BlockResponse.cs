@@ -13,7 +13,7 @@ public record BlockResponse : IResponse
     [JsonPropertyName("verification_timestamp")]
     public long VerificationTimestamp { get; init; }
 
-    public Transaction[] Transactions { get; init; } = Array.Empty<Transaction>();
+    public JsonRpcTransaction[] Transactions { get; init; } = Array.Empty<JsonRpcTransaction>();
     public string Hash { get; init; } = "";
 
     [JsonPropertyName("balance_list_hash")]
