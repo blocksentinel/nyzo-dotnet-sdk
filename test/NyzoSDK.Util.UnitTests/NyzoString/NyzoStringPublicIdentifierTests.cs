@@ -3,7 +3,7 @@ using BS.NyzoSDK.Util.NyzoString;
 using Shouldly;
 using Xunit;
 
-namespace BS.NyzoSDK.Util.Tests.NyzoString;
+namespace BS.NyzoSDK.Util.UnitTests.NyzoString;
 
 public class NyzoStringPublicIdentifierTests
 {

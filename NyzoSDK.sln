@@ -18,11 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NyzoSDK.Util", "src\NyzoSDK.Util\NyzoSDK.Util.csproj", "{461F71B3-D945-4026-815C-8FE840D5A32B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NyzoSDK.Util", "src\NyzoSDK.Util\NyzoSDK.Util.csproj", "{461F71B3-D945-4026-815C-8FE840D5A32B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NyzoSDK.Common", "src\NyzoSDK.Common\NyzoSDK.Common.csproj", "{93580B16-2AE9-4888-974F-CE0C35AB6DB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NyzoSDK.Common", "src\NyzoSDK.Common\NyzoSDK.Common.csproj", "{93580B16-2AE9-4888-974F-CE0C35AB6DB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NyzoSDK.Util.Tests", "test\NyzoSDK.Util.Tests\NyzoSDK.Util.Tests.csproj", "{D42069DA-32AD-4CA6-9C53-13B5CA31C16F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NyzoSDK.Util.UnitTests", "test\NyzoSDK.Util.UnitTests\NyzoSDK.Util.UnitTests.csproj", "{D42069DA-32AD-4CA6-9C53-13B5CA31C16F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
