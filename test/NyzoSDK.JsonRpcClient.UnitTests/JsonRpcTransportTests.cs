@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
-using BS.NyzoSDK.JsonRpcClient;
 using BS.NyzoSDK.JsonRpcClient.Requests;
 using BS.NyzoSDK.JsonRpcClient.Responses;
 using Moq;
@@ -13,7 +12,7 @@ using Moq.Protected;
 using Shouldly;
 using Xunit;
 
-namespace NyzoSDK.JsonRpcClient.UnitTests;
+namespace BS.NyzoSDK.JsonRpcClient.UnitTests;
 
 public class JsonRpcTransportTests
 {

@@ -2,8 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-
+    <AssemblyName>BS.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>BS.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

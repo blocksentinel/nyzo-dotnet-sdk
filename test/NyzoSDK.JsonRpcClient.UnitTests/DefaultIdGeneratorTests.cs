@@ -1,8 +1,7 @@
-using BS.NyzoSDK.JsonRpcClient;
 using Shouldly;
 using Xunit;
 
-namespace NyzoSDK.JsonRpcClient.UnitTests;
+namespace BS.NyzoSDK.JsonRpcClient.UnitTests;
 
 public class DefaultIdGeneratorTests
 {
