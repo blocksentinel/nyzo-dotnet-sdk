@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 
 namespace BS.NyzoSDK.Common.Blockchain;
 
@@ -21,47 +20,36 @@ public record Transaction
     )
     {
         MemoryStream stream = new();
-        using (BinaryWriter writer = new(stream))
-        {
-            writer.Write(Type);
-            writer.Write(Timestamp);
-            writer.Write(Amount);
-            writer.Write(ReceiverIdentifier);
-            writer.Write(PreviousHashHeight);
-            writer.Write(SenderIdentifier);
-            writer.Write((byte)SenderData.Length);
-            writer.Write(SenderData);
-            writer.Write(Signature);
-        }
+        using BinaryWriter writer = new(stream);
+        writer.Write(Type);
+        writer.Write(Timestamp);
+        writer.Write(Amount);
+        writer.Write(ReceiverIdentifier);
+        writer.Write(PreviousHashHeight);
+        writer.Write(SenderIdentifier);
+        writer.Write((byte)SenderData.Length);
+        writer.Write(SenderData);
+        writer.Write(Signature);
 
-        byte[] bytes = stream.ToArray();
-
-        return bytes;
+        return stream.ToArray();
     }
 
     public static Transaction FromBytes(
         byte[] bytes
     )
     {
-        int index = 0;
-        byte type = bytes[index];
-        index += FieldByteSize.TransactionType;
-        long timestamp = BitConverter.ToInt64(bytes.Skip(index).Take(FieldByteSize.Timestamp).ToArray(), 0);
-        index += FieldByteSize.Timestamp;
-        long amount = BitConverter.ToInt64(bytes.Skip(index).Take(FieldByteSize.TransactionAmount).ToArray(), 0);
-        index += FieldByteSize.TransactionAmount;
-        byte[] receiverIdentifier = bytes.Skip(index).Take(FieldByteSize.Identifier).ToArray();
-        index += FieldByteSize.Identifier;
-        long previousHashHeight = BitConverter.ToInt64(bytes.Skip(index).Take(FieldByteSize.BlockHeight).ToArray(), 0);
-        index += FieldByteSize.BlockHeight;
+        MemoryStream stream = new(bytes);
+        using BinaryReader reader = new(stream);
+        byte type = reader.ReadByte();
+        long timestamp = reader.ReadInt64();
+        long amount = reader.ReadInt64();
+        byte[] receiverIdentifier = reader.ReadBytes(FieldByteSize.Identifier);
+        long previousHashHeight = reader.ReadInt64();
         byte[]? previousBlockHash = null;
-        byte[] senderIdentifier = bytes.Skip(index).Take(FieldByteSize.Identifier).ToArray();
-        index += FieldByteSize.Identifier;
-        int senderDataLength = Math.Min(bytes[index] & 0xff, FieldByteSize.MaximumSenderDataLength);
-        index += FieldByteSize.UnnamedByte;
-        byte[] senderData = bytes.Skip(index).Take(senderDataLength).ToArray();
-        index += senderDataLength;
-        byte[] signature = bytes.Skip(index).Take(FieldByteSize.Signature).ToArray();
+        byte[] senderIdentifier = reader.ReadBytes(FieldByteSize.Identifier);
+        int senderDataLength = Math.Min(reader.ReadByte() & 0xff, FieldByteSize.MaximumSenderDataLength);
+        byte[] senderData = reader.ReadBytes(senderDataLength);
+        byte[] signature = reader.ReadBytes(FieldByteSize.Signature);
 
         return new Transaction
         {

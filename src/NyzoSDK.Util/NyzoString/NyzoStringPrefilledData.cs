@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using BS.NyzoSDK.Common;
 
 namespace BS.NyzoSDK.Util.NyzoString;
@@ -33,25 +32,23 @@ public class NyzoStringPrefilledData : INyzoString
     public byte[] ToBytes()
     {
         MemoryStream stream = new();
-        using (BinaryWriter writer = new(stream))
-        {
-            writer.Write(ReceiverIdentifier);
-            writer.Write((byte)SenderData.Length);
-            writer.Write(SenderData);
-        }
+        using BinaryWriter writer = new(stream);
+        writer.Write(ReceiverIdentifier);
+        writer.Write((byte)SenderData.Length);
+        writer.Write(SenderData);
 
-        byte[] bytes = stream.ToArray();
-
-        return bytes;
+        return stream.ToArray();
     }
 
     public static NyzoStringPrefilledData FromBytes(
         byte[] bytes
     )
     {
-        byte[] receiverIdentifier = bytes.Take(FieldByteSize.Identifier).ToArray();
-        int senderDataLength = Math.Min(bytes[FieldByteSize.Identifier] & 0xff, FieldByteSize.MaximumSenderDataLength);
-        byte[] senderData = bytes.Skip(FieldByteSize.Identifier + FieldByteSize.UnnamedByte).Take(senderDataLength).ToArray();
+        MemoryStream stream = new(bytes);
+        using BinaryReader reader = new(stream);
+        byte[] receiverIdentifier = reader.ReadBytes(FieldByteSize.Identifier);
+        int senderDataLength = Math.Min(reader.ReadByte() & 0xff, FieldByteSize.MaximumSenderDataLength);
+        byte[] senderData = reader.ReadBytes(senderDataLength);
 
         return new NyzoStringPrefilledData(receiverIdentifier, senderData);
     }
