@@ -59,7 +59,7 @@ var encoder = new NyzoStringEncoder();
 var nyzoString = NyzoStringPublicIdentifier.FromHex("848db2de31cbe4c4-28dbb9e6bdda3aba-98581356ab0e6e02-37b37fd370ac3c7b");
 var encoded = encoder.Encode(nyzoString);
 
-Console.WriteLine($"Encoded Public Identifier: {response.Result.Nickname}");
+Console.WriteLine($"Encoded Public Identifier: {encoded}");
 // Output:
 // Encoded Public Identifier: id__88idJKWPQ~j4adLXXIVreIHpn1dnHNXL0AvRw.dNI3PZXtxdHx7u
 ```
