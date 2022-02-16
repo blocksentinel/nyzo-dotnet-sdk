@@ -24,6 +24,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NyzoSDK.Common", "src\NyzoS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NyzoSDK.Util.UnitTests", "test\NyzoSDK.Util.UnitTests\NyzoSDK.Util.UnitTests.csproj", "{D42069DA-32AD-4CA6-9C53-13B5CA31C16F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D2B8E455-53C8-4C68-AE80-98D743EEFE69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{1569600A-E697-4631-84CE-9FAE7EB10B0B}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +67,8 @@ Global
 		{461F71B3-D945-4026-815C-8FE840D5A32B} = {8BFDF333-C646-4C0D-BB0C-AB4B559F981F}
 		{93580B16-2AE9-4888-974F-CE0C35AB6DB4} = {8BFDF333-C646-4C0D-BB0C-AB4B559F981F}
 		{D42069DA-32AD-4CA6-9C53-13B5CA31C16F} = {D14F2326-C949-4470-B8F6-128674E78EDE}
+		{D2B8E455-53C8-4C68-AE80-98D743EEFE69} = {9CF4643C-413A-4C3A-8044-90FF0805B238}
+		{1569600A-E697-4631-84CE-9FAE7EB10B0B} = {D2B8E455-53C8-4C68-AE80-98D743EEFE69}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB3F1944-13F3-4535-B741-FB39E491D086}
