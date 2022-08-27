@@ -35,6 +35,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
     }
 
@@ -58,6 +59,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.RetentionEdge.ShouldBe(-1);
@@ -98,6 +100,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.Balance.ShouldBe(8431420);
@@ -125,6 +128,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.AllTransactions.ShouldBeEmpty();
@@ -152,6 +156,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.Transactions.ShouldBeEmpty();
@@ -178,6 +183,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.TargetHeight.ShouldBe(14704052);
@@ -213,6 +219,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.ReceiverIdentifier.ShouldBe("daac63af7ba854123d48dc14f3722c87110ff77b9383b75b5c8c50abae62c096");
@@ -258,6 +265,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.Signature.ShouldBe("3cf0...0d01");
@@ -286,6 +294,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.Count.ShouldBe(5);
@@ -311,6 +320,7 @@ public class NyzoJsonRpcClientTests
 
         // Assert
         result.ShouldNotBeNull();
+        result.JsonRpc.ShouldBe("2.0");
         result.Id.ShouldBe("82e9d267-7de1-4d2c-88c1-6cfedf831c7f");
         result.Result.ShouldNotBeNull();
         result.Result.StartTimestamp.ShouldBe(1639722630000);
